@@ -2,8 +2,6 @@ from sklearn import decomposition
 import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
 
 faces = datasets.fetch_olivetti_faces()
 
@@ -27,7 +25,7 @@ given data is to be classified """
 
 """faces.data = total details of faces, faces.target = classes for which the data is to be classified"""
 X_train, X_test, y_train, y_test = train_test_split(faces.data, faces.target, train_size=0.8, random_state=85)
-
+print(faces.data, "\n", faces.target, "\n", type(faces.data))
 """this function takes 'the number of components needed' as an argument"""
 pca = decomposition.PCA(n_components=150, whiten=True)
 print(X_train.shape, X_test.shape)
@@ -54,5 +52,3 @@ print(X_train_pca.shape)
 print(X_test_pca.shape)
 
 print(print_faces(faces.images, faces.target, 20))
-print('Accuracy : ', accuracy_score(y_true=y_train, y_pred=y_test))
-print(confusion_matrix(y_true=y_train, y_pred=y_test))

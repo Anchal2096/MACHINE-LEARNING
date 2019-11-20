@@ -27,7 +27,7 @@ X_train, X_test, y_train, y_test = train_test_split(faces.data, faces.target, ra
 pca = decomposition.PCA(n_components=150, whiten=True)
 print(X_train.shape, X_test.shape)
 pca.fit(X_train)
-
+print()
 plt.imshow(pca.mean_.reshape(faces.images[0].shape), cmap=plt.cm.bone)
 print(pca.components_.shape)
 
