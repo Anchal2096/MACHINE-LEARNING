@@ -56,19 +56,20 @@ print("------ Done -------")
 import cv2
 from PIL import Image
 import PIL.Image
-
-from pytesseract import image_to_string
 import pytesseract
+import glob
 
-warped = cv2.imread("/home/atrivedi/Machine-Learning/Data_Extraction/Dataset/img (5).jpeg")
-imS = cv2.resize(warped, (1350, 1150))
-cv2.imshow("output", imS)
-cv2.imwrite('Output Image.PNG', imS)
-
+path = "/home/atrivedi/MachineLearning/DataSets For ML/Receipts/*.*"
+for file in glob.glob(path):
+    warped = cv2.imread(file)
+    imS = cv2.resize(warped, (1350, 1150))
+    # cv2.imshow("output", imS)
+    cv2.imwrite('Output Image.PNG', imS)
+    output = pytesseract.image_to_string(PIL.Image.open('Output Image.PNG').convert("RGB"), lang='eng')
+    print(output)
 
 # pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 # TESSDATA_PREFIX = 'C:/Program Files (x86)/Tesseract-OCR'
-output = pytesseract.image_to_string(PIL.Image.open('Output Image.PNG').convert("RGB"), lang='eng')
-print(output)
+
 
 
